@@ -46,4 +46,23 @@ class NetworkingManager {
             }
         }
     }
+    
+    func getAlbumItems(completion: @escaping (([Albums]?, String?) -> Void)) {
+        let url = URL(string: "https://jsonplaceholder.typicode.com/albums")!
+        
+        AF.request(url).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let albums = try JSONDecoder().decode([Albums].self, from: data)
+                    completion(albums, nil)
+                } catch {
+                    completion(nil, error.localizedDescription)
+                }
+                
+            case .failure(let error):
+                completion(nil, error.localizedDescription)
+            }
+        }
+    }
 }
