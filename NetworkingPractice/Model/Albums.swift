@@ -7,7 +7,7 @@
 
 import Foundation
 
-nonisolated struct Albums: Codable {
+nonisolated struct Album: Codable {
     var userId: Int?
     var id: Int?
     var title: String?

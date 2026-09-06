@@ -8,7 +8,7 @@
 import Foundation
 
 class CommentsViewModel {
-    var comments: [Comments] = []
+    var comments: [Comment] = []
     
     private let manager = NetworkingManager()
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-nonisolated struct Comments: Codable {
+nonisolated struct Comment: Codable {
     var postId: Int?
     var id: Int?
     var name: String?

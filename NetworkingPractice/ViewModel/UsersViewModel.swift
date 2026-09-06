@@ -1,24 +1,24 @@
 //
-//  PostsViewModel.swift
+//  UsersViewModel.swift
 //  NetworkingPractice
 //
-//  Created by Javid Sultanov on 05.09.26.
+//  Created by Javid Sultanov on 06.09.26.
 //
 
 import Foundation
 
-class PostsViewModel {
-    var posts: [Post] = []
+class UsersViewModel {
+    var users: [User] = []
     
     private let manager = NetworkingManager()
     
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     
-    func getPosts() {
-        manager.getPostItems { data, error in
+    func getUsers() {
+        manager.getUserItems { data, error in
             if let data {
-                self.posts = data
+                self.users = data
                 self.success?()
             } else if let error {
                 self.error?(error)

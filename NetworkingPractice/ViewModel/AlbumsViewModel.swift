@@ -8,7 +8,7 @@
 import Foundation
 
 class AlbumsViewModel {
-    var albums: [Albums] = []
+    var albums: [Album] = []
     
     private let manager = NetworkingManager()
     
