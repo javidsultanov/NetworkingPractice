@@ -15,7 +15,7 @@ class PostsViewModel {
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     
-    func getPostItems() {
+    func getPosts() {
         manager.getPostItems { data, error in
             if let data {
                 self.posts = data

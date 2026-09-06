@@ -12,6 +12,7 @@ class PostsController: UIViewController {
         let table = UITableView()
         table.delegate = self
         table.dataSource = self
+        table.bounces = false
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -49,7 +50,7 @@ class PostsController: UIViewController {
         viewModel.error = { error in
             print(error)
         }
-        viewModel.getPostItems()
+        viewModel.getPosts()
     }
 }
 
@@ -62,14 +63,20 @@ extension PostsController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         
         cell.textLabel?.text = viewModel.posts[indexPath.row].title
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         cell.textLabel?.numberOfLines = 0
 
         cell.detailTextLabel?.text = viewModel.posts[indexPath.row].body
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         cell.detailTextLabel?.numberOfLines = 0
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let postId = viewModel.posts[indexPath.row].id else {
+            return
+        }
+        
+        let controller = CommentsController(postId: postId)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.show(controller, sender: self)
+    }
 }

@@ -27,4 +27,23 @@ class NetworkingManager {
             }
         }
     }
+    
+    func getCommentItems(postId: Int, completion: @escaping (([Comments]?, String?) -> Void)) {
+        let url = URL(string: "https://jsonplaceholder.typicode.com/comments")!
+        
+        AF.request(url, parameters: ["postId": postId]).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let comments = try JSONDecoder().decode([Comments].self, from: data)
+                    completion(comments, nil)
+                } catch {
+                    completion(nil, error.localizedDescription)
+                }
+                
+            case .failure(let error):
+                completion(nil, error.localizedDescription)
+            }
+        }
+    }
 }
