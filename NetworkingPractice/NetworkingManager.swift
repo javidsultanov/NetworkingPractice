@@ -84,4 +84,23 @@ class NetworkingManager {
             }
         }
     }
+    
+    func getPhotoItems(completion: @escaping (([Photo]?, String?) -> Void)) {
+        let url = URL(string: "https://picsum.photos/v2/list")!
+        
+        AF.request(url).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let photos = try JSONDecoder().decode([Photo].self, from: data)
+                    completion(photos, nil)
+                } catch {
+                    completion(nil, error.localizedDescription)
+                }
+                
+            case .failure(let error):
+                completion(nil, error.localizedDescription)
+            }
+        }
+    }
 }

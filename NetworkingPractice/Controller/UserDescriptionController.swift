@@ -66,7 +66,7 @@ class UserDescriptionController: UIViewController {
         emailLabel.text = "Email: \(viewModel.user?.email ?? "")"
         phoneLabel.text = "Phone: \(viewModel.user?.phone ?? "")"
         companyLabel.text = "Company: \(viewModel.user?.company?.name ?? "")"
-        addressLabel.text = "Address: \(viewModel.user?.address?.street ?? ""), \(viewModel.user?.address?.suite ?? ""), \(viewModel.user?.address?.city ?? "") /\n\(viewModel.user?.address?.zipcode ?? "")"
+        addressLabel.text = "Address: \(viewModel.user?.address?.street ?? ""), \(viewModel.user?.address?.suite ?? ""), \(viewModel.user?.address?.city ?? "") / \(viewModel.user?.address?.zipcode ?? "")"
     }
     
     private func configureConstraints() {
@@ -90,7 +90,8 @@ class UserDescriptionController: UIViewController {
             companyLabel.leadingAnchor.constraint(equalTo: phoneLabel.leadingAnchor),
             
             addressLabel.topAnchor.constraint(equalTo: companyLabel.bottomAnchor, constant: 20),
-            addressLabel.leadingAnchor.constraint(equalTo: companyLabel.leadingAnchor)
+            addressLabel.leadingAnchor.constraint(equalTo: companyLabel.leadingAnchor),
+            addressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }

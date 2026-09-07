@@ -13,14 +13,15 @@ class CommentsController: UIViewController {
         table.dataSource = self
         table.bounces = false
         table.showsVerticalScrollIndicator = false
+        table.allowsSelection = false
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
     
     private let viewModel: CommentsViewModel
         
-    init(postId: Int) {
-        viewModel = CommentsViewModel(postId: postId)
+    init(postId: Int, postTitle: String) {
+        viewModel = CommentsViewModel(postId: postId, postTitle: postTitle)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,7 +39,7 @@ class CommentsController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        title = "Comments"
+        title = viewModel.postTitle
     }
     
     private func configureConstraints() {

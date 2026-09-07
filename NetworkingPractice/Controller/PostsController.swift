@@ -75,7 +75,9 @@ extension PostsController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        let controller = CommentsController(postId: postId)
+        let postTitle = viewModel.posts[indexPath.item].title ?? ""
+        
+        let controller = CommentsController(postId: postId, postTitle: postTitle)
         controller.hidesBottomBarWhenPushed = true
         navigationController?.show(controller, sender: self)
     }

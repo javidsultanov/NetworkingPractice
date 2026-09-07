@@ -27,11 +27,11 @@ class UsersCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configureCell()
+        configureUI()
         configureConstraints()
     }
     
-    private func configureCell() {
+    private func configureUI() {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.systemGray.cgColor

@@ -16,9 +16,11 @@ class CommentsViewModel {
     var error: ((String) -> Void)?
     
     private let postId: Int
+    let postTitle: String
     
-    init(postId: Int) {
+    init(postId: Int, postTitle: String) {
         self.postId = postId
+        self.postTitle = postTitle
     }
     
     func getComments() {

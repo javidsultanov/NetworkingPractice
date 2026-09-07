@@ -11,12 +11,12 @@ class UsersController: UIViewController {
     private lazy var usersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 12
-        layout.minimumInteritemSpacing = 12
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(UsersCell.self, forCellWithReuseIdentifier: "UsersCell")
         collection.delegate = self
         collection.dataSource = self
+        collection.bounces = false
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()

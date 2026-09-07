@@ -12,6 +12,7 @@ class AlbumsController: UIViewController {
         let table = UITableView()
         table.dataSource = self
         table.bounces = false
+        table.allowsSelection = false
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
